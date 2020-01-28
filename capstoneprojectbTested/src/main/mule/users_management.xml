@@ -120,9 +120,6 @@ output application/json
             </on-error-propagate>
         </error-handler>
     </flow>
-    <flow name="put:\users\(id):application\json:users_management-config">
-        <flow-ref doc:name="UpDateUser" doc:id="19d838d2-ed9c-4d73-b690-81926d29aa6d" name="UpDate_User" />
-    </flow>
     <flow name="delete:\users\(id):users_management-config">
         <ee:transform doc:id="ed126d23-502f-4ab1-88ac-49ad214e5ae6">
             <ee:variables>
@@ -133,21 +130,34 @@ output application/json
     </flow>
     <flow name="get:\users:users_management-config">
         <ee:transform doc:name="Transform Message" doc:id="079a2037-d99f-420f-af11-ba9f5a87b063">
-			<ee:variables>
-				<ee:set-variable variableName="id"><![CDATA[attributes.uriParams.'id']]></ee:set-variable>
-			</ee:variables>
-		</ee:transform>
-		<flow-ref doc:name="GETAllUsers" doc:id="39d9a18f-485a-46ac-9c87-80ba5253df06" name="GET_AllUsers" />
+            <ee:variables>
+                <ee:set-variable variableName="id"><![CDATA[attributes.uriParams.'id']]></ee:set-variable>
+            </ee:variables>
+        </ee:transform>
+        <flow-ref doc:name="GETAllUsers" doc:id="39d9a18f-485a-46ac-9c87-80ba5253df06" name="GET_AllUsers" />
     </flow>
     <flow name="get:\users\(id):users_management-config">
-		<ee:transform doc:name="Transform Message" doc:id="246ac9cd-a08a-4ab7-b9a8-a2270534d95f">
-			<ee:variables>
-				<ee:set-variable variableName="id"><![CDATA[attributes.uriParams.'id']]></ee:set-variable>
-			</ee:variables>
-		</ee:transform>
-		<flow-ref doc:name="GETUser" doc:id="434b23ce-99e6-45f6-a809-ab9abd2c54cc" name="GET_User" />
+        <ee:transform doc:name="Transform Message" doc:id="246ac9cd-a08a-4ab7-b9a8-a2270534d95f">
+            <ee:variables>
+                <ee:set-variable variableName="id"><![CDATA[attributes.uriParams.'id']]></ee:set-variable>
+            </ee:variables>
+        </ee:transform>
+        <flow-ref doc:name="GETUser" doc:id="434b23ce-99e6-45f6-a809-ab9abd2c54cc" name="GET_User" />
     </flow>
     <flow name="post:\users:application\json:users_management-config">
         <flow-ref doc:name="Creatusers" doc:id="d0942b46-b9e0-4be0-a6b0-26b5f5888401" name="Create_users" />
+    </flow>
+    <flow name="put:\users:application\json:users_management-config">
+        <flow-ref doc:name="UpDate_User" doc:id="3180fd11-0be0-4cd7-b901-448b14fb5c77" name="UpDate_User"/>
+		<ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:id="f380a843-1169-4a48-baa9-d2f400df0b6b">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+{
+  message: "user successfully updated"
+}]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
     </flow>
 </mule>

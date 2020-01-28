@@ -77,26 +77,24 @@ baseUri: https://anypoint.mulesoft.com/mocking/api/v1/links/4aa4da8a-b951-4697-8
             application/json:
               example: {message: "user can not be deleted"}
 
-    put:
+  put:
+   body:
+    application/json:
+      example:
+        {
+              "id": 1,
+              "first": "Adam",
+              "last": "Bob",
+              "department": "IIB"
+        }
+
+   responses:
+     200:
       body:
        application/json:
-        example:
-          {
-                "id": 1,
-                "first": "Adam",
-                "last": "Bob",
-                "department": "IIB"
-           }
-
-      responses:
-       200:
-        body:
-         application/json:
-            example: {message: "user successfully updated"}
-       404:
-         body:
-           application/json:
-            example: {message: "user can not be updated"}
-            
-
+        example: {message: "user successfully updated"}
+     404:
+      body:
+       application/json:
+        example: {message: "user can not be updated"}
       

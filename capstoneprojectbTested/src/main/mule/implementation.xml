@@ -108,7 +108,8 @@ ns ns0 http://www.craftsoftware.com/users
 			ns0#last: payload.last,
 			ns0#department: payload.department
 		}
-	}}]]></ee:set-payload>
+	}
+}]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
 		<wsc:consume doc:name="Consume" doc:id="a5212cd8-6c1d-48f6-a7fa-fba688f8878e" operation="UpdateUser" config-ref="Web_Service_Consumer_Config">
