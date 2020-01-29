@@ -14,9 +14,15 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
+		<http.host>0.0.0.0</http.host>
+		<http.port>8089</http.port>
+		<http.path>/api/*</http.path>
+		<cloundhub.env>Sandbox</cloundhub.env>
+
 		<app.runtime>4.2.2</app.runtime>
 		<mule.maven.plugin.version>3.3.5</mule.maven.plugin.version>
-	<munit.version>2.2.1</munit.version>
+	    <munit.version>2.2.1</munit.version>
+	    
     </properties>
 
 	<build>
@@ -62,7 +68,43 @@
             </plugin>
         </plugins>
 	</build>
-
+	<profiles>
+	<profile>
+			<id>cloudhub</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.mule.tools.maven</groupId>
+						<artifactId>mule-maven-plugin</artifactId>
+						<configuration>
+							<cloudHubDeployment>
+								<muleVersion>${mule.version}</muleVersion>
+								<username>${anypoint.username}</username>
+								<password>${anypoint.password}</password>
+								<applicationName>${artifactId}-${maven.build.timestamp}</applicationName>
+								<environment>${cloundhub.env}</environment>
+								<businessGroup>${anypoint.businessGroup}</businessGroup>
+								<region>${cloudhub.region}</region>
+								<uri>${anypoint.uri}</uri>
+								<workerType>${cloudhub.workerType}</workerType>
+								<workers>${cloudhub.workers}</workers>
+								
+							</cloudHubDeployment>
+						</configuration>
+						<executions>
+							<execution>
+								<id>deploy</id>
+								<phase>deploy</phase>
+								<goals>
+									<goal>deploy</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+	</profile>
+	</profiles>
 	<dependencies>
         <dependency>
             <groupId>org.mule.connectors</groupId>

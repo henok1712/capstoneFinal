@@ -12,5 +12,5 @@ http://www.mulesoft.org/schema/mule/wsc http://www.mulesoft.org/schema/mule/wsc/
 		<wsc:connection wsdlLocation="http://api.icraftsoft.net:5858/ws/users.wsdl" service="UserPortService" port="UserPortSoap11" address="http://api.icraftsoft.net:5858/ws" />
 	</wsc:config>
 	<configuration-properties doc:name="Configuration properties" doc:id="42ebfa95-4a49-448a-a847-9a665ec07249" file="users.${env}.properties" />
-	<global-property doc:name="Global Property" doc:id="bfb4e9c3-f389-4126-9d15-d02186272daf" name="env" value="TEST" />
+	<global-property doc:name="Global Property" doc:id="bfb4e9c3-f389-4126-9d15-d02186272daf" name="env" value="dev" />
 </mule>
